@@ -227,7 +227,7 @@ class CPL_DLL GDALOpenInfo
     int         bStatOK;
     int         bIsDirectory;
 
-    FILE        *fp;
+    FILE        *fp; /* io handler */
 
     int         nHeaderBytes;
     GByte       *pabyHeader;
@@ -262,6 +262,9 @@ class CPL_DLL GDALDataset : public GDALMajorObject
     friend class GDALDriverManager;
 
   protected:
+/*---------------------------------------------------------------------------*/
+/*                      data members                                         */
+/*---------------------------------------------------------------------------*/
     GDALDriver  *poDriver;
     GDALAccess  eAccess;
     
@@ -275,7 +278,10 @@ class CPL_DLL GDALDataset : public GDALMajorObject
 
     int         nRefCount;
     int         bShared;
-
+/*---------------------------------------------------------------------------*/
+/*                     member functions                                      */
+/*---------------------------------------------------------------------------*/
+		// Non-parameter Constructor
                 GDALDataset(void);
     void        RasterInitialize( int, int );
     void        SetBand( int, GDALRasterBand * );
@@ -375,6 +381,17 @@ class CPL_DLL GDALDataset : public GDALMajorObject
 
 //! A single raster block in the block cache.
 
+/*---------------------------------------------------------------------------*/
+/*                       Data member Symbols meannings:                      */
+/*                                                                           */
+/*     start-with-b symbols : bool                                           */
+/*     start-with-e symbols : emunemum                                       */
+/*     start-with-n symbols : int                                            */
+/*     start-with-p symbols : pointer                                        */
+/*     start-with-po symbols : pointer to object                             */
+/*     start-with-psz symbols : pointer to char (used as a string)           */
+/*     start-with-pa symbols : pointer to pointer (pointer after)            */
+/*---------------------------------------------------------------------------*/
 class CPL_DLL GDALRasterBlock
 {
     GDALDataType        eType;
@@ -392,6 +409,7 @@ class CPL_DLL GDALRasterBlock
 
     GDALRasterBand      *poBand;
     
+		/* double-direction list */
     GDALRasterBlock     *poNext;
     GDALRasterBlock     *poPrevious;
 
@@ -461,7 +479,7 @@ public:
 /*                            GDALRasterBand                            */
 /* ******************************************************************** */
 
-//! A single raster band (or channel).
+//! A single raster band (or channel).(amount = one)
 
 class CPL_DLL GDALRasterBand : public GDALMajorObject
 {
@@ -496,6 +514,7 @@ class CPL_DLL GDALRasterBand : public GDALMajorObject
     int         nBlockReads;
     int         bForceCachedIO;
 
+		/* about Mask */
     GDALRasterBand *poMask;
     bool        bOwnMask;
     int         nMaskFlags;

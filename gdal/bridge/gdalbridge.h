@@ -96,8 +96,8 @@ GDAL_ENTRY int	(*pfnGDALGetDataTypeSize)( GDALDataType ) GDAL_NULL;
 #define GDALGetDataTypeSize pfnGDALGetDataTypeSize
 
 typedef enum {
-    GA_ReadOnly = 0,
-    GA_Update = 1
+    GA_ReadOnly = 0,/* readonly */
+    GA_Update = 1 /* readwirte */
 } GDALAccess;
 
 typedef enum {

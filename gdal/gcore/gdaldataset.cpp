@@ -126,7 +126,7 @@ static void GDALDatasetFreeFunc(void* elt)
 }
 
 /************************************************************************/
-/* Functions shared between gdalproxypool.cpp and gdaldataset.cpp */
+/* Functions shared between gdalproxypool.cpp and gdaldataset.cpp       */
 /************************************************************************/
 
 /* The open-shared mutex must be used by the ProxyPool too */
